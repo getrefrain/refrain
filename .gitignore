@@ -218,3 +218,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Private PRD (business strategy); technical specs are committed
+specs/000-prd.md
