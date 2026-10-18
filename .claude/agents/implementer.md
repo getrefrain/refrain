@@ -6,7 +6,7 @@ skills:
   - ponytail:ponytail
 hooks:
   PreToolUse:
-    - matcher: "Edit|Write|NotebookEdit"
+    - matcher: "Edit|Write|NotebookEdit|Bash"
       hooks:
         - type: command
           command: python3 "$CLAUDE_PROJECT_DIR/.claude/hooks/scope.py" "src,pyproject.toml,uv.lock,~specs/*/tasks.md"

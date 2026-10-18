@@ -4,7 +4,7 @@ description: Writes user-facing docs, the README and the getrefrain.ai landing p
 tools: Read, Grep, Glob, Write, Edit, Bash
 hooks:
   PreToolUse:
-    - matcher: "Edit|Write|NotebookEdit|Read|Grep|Glob"
+    - matcher: "Edit|Write|NotebookEdit|Read|Grep|Glob|Bash"
       hooks:
         - type: command
           command: python3 "$CLAUDE_PROJECT_DIR/.claude/hooks/scope.py" docs,README.md,CONTRIBUTING.md,SECURITY.md ".,!specs/000-prd.md"

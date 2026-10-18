@@ -4,6 +4,12 @@ description: Read-only review that code and tests match the spec. Use after impl
 tools: Read, Grep, Glob, Bash, Skill
 skills:
   - ponytail:ponytail-review
+hooks:
+  PreToolUse:
+    - matcher: "Bash"
+      hooks:
+        - type: command
+          command: python3 "$CLAUDE_PROJECT_DIR/.claude/hooks/scope.py" ""
 ---
 You check that Refrain's code and tests conform to its specs. You do not edit files.
 

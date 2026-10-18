@@ -4,7 +4,7 @@ description: Writes tests in tests/ from a spec and its test vectors, without re
 tools: Read, Grep, Glob, Write, Edit, Bash
 hooks:
   PreToolUse:
-    - matcher: "Edit|Write|NotebookEdit|Read|Grep|Glob"
+    - matcher: "Edit|Write|NotebookEdit|Read|Grep|Glob|Bash"
       hooks:
         - type: command
           command: python3 "$CLAUDE_PROJECT_DIR/.claude/hooks/scope.py" "tests,~specs/*/tasks.md" specs,tests,pyproject.toml

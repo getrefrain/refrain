@@ -25,6 +25,8 @@ jobs:
             grep -Eq '^- \[[ xX]\] .*tests/' "$f" || { echo "::error file=$f::no test tasks (tasks touching tests/)"; fail=1; }
           done
           exit $fail
+      - name: Agent scope hook
+        run: uv run pytest .claude/hooks -q
       - name: Tests
         # Exit 5 = no tests collected yet; remove once spec 001 tests land.
         run: uv run pytest || [ $? -eq 5 ]

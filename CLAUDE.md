@@ -15,7 +15,7 @@ Snapshot-keyed data gateway for AI agents: the data plane between agents and the
 
 ## Workflow
 
-Spec Kit (`/speckit-*` skills) drives the steps; each step runs inside the agent that owns its files. Each agent can only write its own paths, enforced by `.claude/hooks/scope.py`. Don't run `/speckit-implement` in the main session: it would write tests and code together.
+Spec Kit (`/speckit-*` skills) drives the steps; each step runs inside the agent that owns its files. Each agent can only write its own paths, enforced by `.claude/hooks/scope.py` for file tools and Bash (reviewers can write nothing). Don't run `/speckit-implement` in the main session: it would write tests and code together.
 
 0. `product-owner` turns a need into requirements in the PRD and an index row. The project owner approves.
 1. `spec-writer` runs `speckit-specify` → `speckit-clarify` → `speckit-plan` → `speckit-tasks` → `speckit-analyze`, producing `spec.md`, `plan.md`, `tasks.md` and `vectors.json`. The project owner approves it (status APPROVED).

@@ -4,7 +4,7 @@ description: Writes and revises specs in specs/ (requirements, contracts, test v
 tools: Read, Grep, Glob, Write, Edit, Bash, WebFetch, WebSearch, Skill
 hooks:
   PreToolUse:
-    - matcher: "Edit|Write|NotebookEdit"
+    - matcher: "Edit|Write|NotebookEdit|Bash"
       hooks:
         - type: command
           command: python3 "$CLAUDE_PROJECT_DIR/.claude/hooks/scope.py" "specs,.specify/feature.json,!specs/000-prd.md,!specs/README.md"
