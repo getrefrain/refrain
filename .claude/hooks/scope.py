@@ -3,7 +3,7 @@
 
 Usage (from agent frontmatter):
     scope.py <write-paths> [<read-paths>]
-Comma-separated repo-relative paths (dirs or files). "." means the whole repo;
+Comma-separated repo-relative paths (dirs, files or fnmatch globs). "." means the whole repo;
 a leading "!" excludes a path and wins over any allow. Read paths limit
 Read/Grep/Glob; omit to allow reading everything. A search whose root contains
 an excluded path is blocked, since its results could include that path.
@@ -12,6 +12,7 @@ ponytail: does not police Bash; an agent can still write via the shell.
 Add a Bash check if agents start doing that.
 """
 
+import fnmatch
 import json
 import os
 import subprocess
@@ -34,7 +35,7 @@ def repo_root(cwd):
 def under(rel, a):
     if rel == ".." or rel.startswith(".." + os.sep):
         return False
-    return a == "." or rel == a or rel.startswith(a + os.sep)
+    return a == "." or rel == a or rel.startswith(a + os.sep) or fnmatch.fnmatchcase(rel, a)
 
 
 def permitted(path, entries, root, cwd, search):

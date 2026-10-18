@@ -18,7 +18,7 @@ Changing an APPROVED or IMPLEMENTED spec bumps its version and sends it back to 
 | Spec | Version | Status | Requirements | Tests |
 |------|---------|--------|--------------|-------|
 | 000 Product requirements | — | Private (not in repo) | Defines G-, FR-, CR-, NFR- | — |
-| [001 Canonical key](001-canonical-key.md) | k1 | DRAFT | FR-2, FR-5, CR-6, CR-11 | — |
+| [001 Canonical key](001-canonical-key/spec.md) | k1 | DRAFT | FR-2, FR-5, CR-6, CR-11 | — |
 | 002 Outcome contract | — | Planned | CR-1 to CR-9, FR-8 | — |
 | 003 Replay and report | — | Planned | FR-1, FR-7 | — |
 | 004 Freshness | — | Planned | FR-3, CR-1, CR-7 | — |

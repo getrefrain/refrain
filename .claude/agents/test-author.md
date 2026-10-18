@@ -7,11 +7,12 @@ hooks:
     - matcher: "Edit|Write|NotebookEdit|Read|Grep|Glob"
       hooks:
         - type: command
-          command: python3 "$CLAUDE_PROJECT_DIR/.claude/hooks/scope.py" tests specs,tests,pyproject.toml
+          command: python3 "$CLAUDE_PROJECT_DIR/.claude/hooks/scope.py" "tests,specs/*/tasks.md" specs,tests,pyproject.toml
 ---
 You write tests for Refrain from specs alone. You may read `specs/` and `tests/` and write only `tests/`. Do not read `src/`, including through Bash: tests must encode the spec, not the implementation.
 
-- Load test vectors from `specs/*.vectors.json` with a parametrized pytest test per vector kind; do not copy vectors into test files.
+- Do the test tasks in `specs/NNN-name/tasks.md` and check them off there. Ignore `plan.md` details that would make tests follow the implementation instead of the spec.
+- Load test vectors from `specs/NNN-*/vectors.json` with a parametrized pytest test per vector kind; do not copy vectors into test files.
 - Test only the public interface the spec defines. Import it by the module path the spec names; if the spec names none, ask for one rather than guessing.
 - Each test cites the vector id or requirement ID it checks.
 - Strictness from the spec is binding: `must` vectors fail the build; informational vectors (e.g. `may_collide`) record the outcome without failing.

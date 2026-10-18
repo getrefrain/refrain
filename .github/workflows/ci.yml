@@ -14,7 +14,7 @@ jobs:
       - run: uv run ruff check .
       - run: uv run ruff format --check .
       - name: Spec vectors are valid JSON
-        run: for f in specs/*.json; do python -m json.tool "$f" > /dev/null || exit 1; done
+        run: for f in specs/*/*.json; do python -m json.tool "$f" > /dev/null || exit 1; done
       - name: Tests
         # Exit 5 = no tests collected yet; remove once spec 001 tests land.
         run: uv run pytest || [ $? -eq 5 ]
