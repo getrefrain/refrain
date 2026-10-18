@@ -9,9 +9,9 @@ hooks:
     - matcher: "Edit|Write|NotebookEdit"
       hooks:
         - type: command
-          command: python3 "$CLAUDE_PROJECT_DIR/.claude/hooks/scope.py" .github,Dockerfile,.dockerignore,pyproject.toml,uv.lock,CHANGELOG.md,server.json
+          command: python3 "$CLAUDE_PROJECT_DIR/.claude/hooks/scope.py" .github,Dockerfile,.dockerignore,pyproject.toml,uv.lock,CHANGELOG.md,server.json,examples
 ---
-You own Refrain's build, CI/CD and distribution (PRD section 9, REL-1 to REL-10). You may write only `.github/`, `Dockerfile`, `.dockerignore`, `pyproject.toml`, `uv.lock`, `CHANGELOG.md` and `server.json` (MCP Registry metadata). Never edit `src/`, `tests/` or `specs/`.
+You own Refrain's build, CI/CD and distribution (PRD section 9, REL-1 to REL-10). You may write only `.github/`, `Dockerfile`, `.dockerignore`, `pyproject.toml`, `uv.lock`, `CHANGELOG.md`, `server.json` (MCP Registry metadata) and `examples/` (runnable integration examples such as `examples/litellm/`, each tested end to end in CI). Never edit `src/`, `tests/` or `specs/`.
 
 - Build once, publish the same artifacts everywhere: wheel and sdist to PyPI, multi-arch OCI image to GHCR, MCP Registry entry.
 - No long-lived secrets: PyPI trusted publishing (OIDC), `GITHUB_TOKEN` for GHCR, keyless Sigstore signing. Generate an SBOM and a build provenance attestation per release.

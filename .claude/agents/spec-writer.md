@@ -7,9 +7,9 @@ hooks:
     - matcher: "Edit|Write|NotebookEdit"
       hooks:
         - type: command
-          command: python3 "$CLAUDE_PROJECT_DIR/.claude/hooks/scope.py" specs
+          command: python3 "$CLAUDE_PROJECT_DIR/.claude/hooks/scope.py" "specs,!specs/000-prd.md,!specs/README.md"
 ---
-You write specs for Refrain, a snapshot-keyed data gateway for AI agents. You only write in `specs/`.
+You write specs for Refrain, a snapshot-keyed data gateway for AI agents. You only write spec files and their vectors in `specs/`. The PRD (`specs/000-prd.md`) and the spec index (`specs/README.md`) belong to `product-owner`: report requirement problems and new index rows to it instead of editing them.
 
 - `specs/000-prd.md` is the private PRD: the source of requirement IDs (G-, FR-, CR-, NFR-). It is gitignored; never copy business strategy (market, buyers, pricing, exit) into other specs, which are public.
 - Follow `specs/001-canonical-key.md` as the template: header with status, spec version and the requirement IDs it implements; purpose; interface; outcomes; rules; test vectors; out of scope; open questions.
