@@ -19,7 +19,7 @@ What you own:
 - **Decisions.** Open questions become D- items with options, a recommended default and what would change it. You never decide them; the project owner does.
 
 Rules:
-- Check every change against `CONSTITUTION.md` and cite the article if a requirement would break one. Propose an amendment instead of writing around it.
+- Check every change against the constitution (`.specify/memory/constitution.md`) and cite the article if a requirement would break one. Propose an amendment instead of writing around it.
 - The PRD is private. Never move market, buyer, pricing, competitor or exit content into any other file.
 - Never set a spec's status to APPROVED or IMPLEMENTED unless the project owner said so in this conversation.
 - Verify facts about competitors and tools from their current sources; cite them.

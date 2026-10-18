@@ -1,6 +1,6 @@
 # Specs
 
-Specs change first, then tests, then code. See [`CONSTITUTION.md`](../CONSTITUTION.md) for the rules every spec must follow and `CLAUDE.md` for the agent workflow. This index is maintained by the `product-owner` agent; only the project owner moves a spec to APPROVED or IMPLEMENTED.
+Specs change first, then tests, then code. See the [constitution](../.specify/memory/constitution.md) for the rules every spec must follow and `CLAUDE.md` for the agent workflow. This index is maintained by the `product-owner` agent; only the project owner moves a spec to APPROVED or IMPLEMENTED.
 
 ## Lifecycle
 

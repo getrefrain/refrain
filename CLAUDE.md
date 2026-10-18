@@ -2,13 +2,13 @@
 
 Snapshot-keyed data gateway for AI agents: the data plane between agents and the warehouse.
 
-@CONSTITUTION.md
+@.specify/memory/constitution.md
 
 ## Layout
 
-- `CONSTITUTION.md` — rules that override everything else. Only the project owner edits it.
+- `.specify/memory/constitution.md` — the constitution: rules that override everything else. Only the project owner edits it.
 - `specs/` — one directory per spec (`specs/NNN-name/`: `spec.md`, `plan.md`, `tasks.md`, `vectors.json`, plus whatever `speckit-plan` adds). `specs/000-prd.md` is the private PRD (gitignored); `specs/README.md` is the index. Every other spec is public.
-- `.specify/` — GitHub Spec Kit (scripts, templates, workflow). `.specify/memory/constitution.md` is a symlink to `CONSTITUTION.md`; Refrain's templates live in `.specify/templates/overrides/`.
+- `.specify/` — GitHub Spec Kit (constitution, scripts, templates, workflow). Refrain's templates live in `.specify/templates/overrides/`.
 - `tests/` — tests derived from specs.
 - `src/` — implementation (Python 3.12+, uv).
 - `docs/`, `examples/`, `.github/` — docs and site, integration examples, CI/CD.
@@ -25,7 +25,7 @@ Spec Kit (`/speckit-*` skills) drives the steps; each step runs inside the agent
 
 A conflict goes to the owner of the higher document (constitution → PRD → spec → tests → code), never patched in place.
 
-`/speckit-constitution` is the project owner's alone; it edits `CONSTITUTION.md` through the symlink.
+`/speckit-constitution` is the project owner's alone. No agent's scope includes `.specify/memory/`.
 
 Alongside, not in sequence:
 

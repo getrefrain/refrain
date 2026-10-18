@@ -15,6 +15,13 @@ jobs:
       - run: uv run ruff format --check .
       - name: Spec vectors are valid JSON
         run: for f in specs/*/*.json; do python -m json.tool "$f" > /dev/null || exit 1; done
+      - name: Every tasks.md has test tasks (Constitution Article I)
+        run: |
+          shopt -s nullglob; fail=0
+          for f in specs/*/tasks.md; do
+            grep -Eq '^- \[[ xX]\] .*tests/' "$f" || { echo "::error file=$f::no test tasks (tasks touching tests/)"; fail=1; }
+          done
+          exit $fail
       - name: Tests
         # Exit 5 = no tests collected yet; remove once spec 001 tests land.
         run: uv run pytest || [ $? -eq 5 ]
