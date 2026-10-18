@@ -1,0 +1,22 @@
+name: Feature request
+description: A need Refrain does not meet yet.
+labels: [enhancement, needs-spec]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Behavior changes go spec-first (Constitution Article I): an accepted request becomes a spec with test vectors under `specs/` before any code is written.
+  - type: textarea
+    id: need
+    attributes:
+      label: The need
+      description: The problem you are trying to solve, not the solution. Who hits it, and when?
+    validations:
+      required: true
+  - type: textarea
+    id: proposed
+    attributes:
+      label: Proposed behavior
+      description: What Refrain should do from the outside, including what happens on failure.
+    validations:
+      required: false
