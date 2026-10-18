@@ -4,7 +4,8 @@
 Usage (from agent frontmatter):
     scope.py <write-paths> [<read-paths>]
 Comma-separated repo-relative paths (dirs, files or fnmatch globs). "." means the whole repo;
-a leading "!" excludes a path and wins over any allow. Read paths limit
+a leading "!" excludes a path and wins over any allow; a leading "~" allows
+only Edits that tick Markdown checkboxes ("- [ ]" -> "- [x]"). Read paths limit
 Read/Grep/Glob; omit to allow reading everything. A search whose root contains
 an excluded path is blocked, since its results could include that path.
 
@@ -15,6 +16,7 @@ Add a Bash check if agents start doing that.
 import fnmatch
 import json
 import os
+import re
 import subprocess
 import sys
 
@@ -36,6 +38,21 @@ def under(rel, a):
     if rel == ".." or rel.startswith(".." + os.sep):
         return False
     return a == "." or rel == a or rel.startswith(a + os.sep) or fnmatch.fnmatchcase(rel, a)
+
+
+def only_ticks(old, new):
+    """True if new differs from old only by ticking "- [ ]" checkboxes."""
+    if len(old) != len(new) or old == new:
+        return False
+    for i, (a, b) in enumerate(zip(old, new)):
+        if a == b:
+            continue
+        line = old[:i].rsplit("\n", 1)[-1]
+        if not (
+            a == " " and b in "xX" and re.fullmatch(r"\s*- \[", line) and old[i + 1 : i + 2] == "]"
+        ):
+            return False
+    return True
 
 
 def permitted(path, entries, root, cwd, search):
@@ -64,8 +81,19 @@ def main():
         return 0
 
     search = tool in ("Grep", "Glob")
+    tick = [e[1:] for e in allowed if e.startswith("~")]
+    allowed = [e for e in allowed if not e.startswith("~")]
     if path and permitted(path, allowed, root, cwd, search):
         return 0
+    if path and tick and permitted(path, tick, root, cwd, search):
+        if tool == "Edit" and only_ticks(args.get("old_string", ""), args.get("new_string", "")):
+            return 0
+        print(
+            f"{event.get('agent_type', 'this agent')} may only tick checkboxes in {path}: "
+            'use Edit with old_string containing the whole "- [ ] ..." line and change only [ ] to [X]',
+            file=sys.stderr,
+        )
+        return 2
     agent = event.get("agent_type", "this agent")
     print(
         f"{agent} may only {'write' if tool in WRITE_TOOLS else 'read'} "

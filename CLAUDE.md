@@ -36,8 +36,8 @@ Alongside, not in sequence:
 |-------|--------|----------|
 | product-owner | `specs/000-prd.md`, `specs/README.md` | — |
 | spec-writer | `specs/` except PRD and index; `.specify/feature.json` | — |
-| test-author | `tests/`, `specs/*/tasks.md` (reads only `specs/`, `tests/`) | overridden: every vector is required |
-| implementer | `src/`, `pyproject.toml`, `uv.lock`, `specs/*/tasks.md` | preloads `ponytail:ponytail` |
+| test-author | `tests/`; ticks checkboxes in `specs/*/tasks.md` (reads only `specs/`, `tests/`) | overridden: every vector is required |
+| implementer | `src/`, `pyproject.toml`, `uv.lock`; ticks checkboxes in `specs/*/tasks.md` | preloads `ponytail:ponytail` |
 | spec-reviewer | nothing | preloads `ponytail:ponytail-review` |
 | security-reviewer | nothing | overridden: never trims security |
 | release-engineer | `.github/`, `Dockerfile`, packaging, `CHANGELOG.md`, `server.json`, `examples/` | preloads `ponytail:ponytail` |
