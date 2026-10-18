@@ -18,9 +18,14 @@ Changing an APPROVED or IMPLEMENTED spec bumps its version and sends it back to 
 | Spec | Version | Status | Requirements | Tests |
 |------|---------|--------|--------------|-------|
 | 000 Product requirements | — | Private (not in repo) | Defines G-, FR-, CR-, NFR- | — |
-| [001 Canonical key](001-canonical-key.md) | k1 | DRAFT | FR-2, FR-5, CR-6 | — |
+| [001 Canonical key](001-canonical-key.md) | k1 | DRAFT | FR-2, FR-5, CR-6, CR-11 | — |
 | 002 Outcome contract | — | Planned | CR-1 to CR-9, FR-8 | — |
 | 003 Replay and report | — | Planned | FR-1, FR-7 | — |
 | 004 Freshness | — | Planned | FR-3, CR-1, CR-7 | — |
-| 005 Bucket layout | — | Planned | FR-4, NFR-2, NFR-5 | — |
+| 005 Bucket layout and lifecycle | — | Planned | FR-4, FR-13, NFR-2, NFR-5 | — |
 | 006 MCP tools | — | Planned | FR-6, FR-10 | — |
+| 007 Query policy and sensitive data | — | Planned | FR-12, FR-18, CR-10, CR-11, CR-13 | — |
+| 008 Observability and audit | — | Planned | FR-14, FR-15, FR-16 | — |
+| 009 Release and distribution | — | Planned | REL-1 to REL-10 | — |
+| 010 Execution backends | — | Planned | FR-17, CR-12 | — |
+| 011 Console and versioned policy | — | Planned (v0.2) | FR-19 | — |

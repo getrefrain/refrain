@@ -19,9 +19,14 @@ For each spec, delegate in order. Each agent is limited to its own directories b
 
 A disagreement between spec, test and code goes back to step 1, never patched in place.
 
+Alongside, not in sequence:
+
+- `release-engineer` owns `.github/`, packaging, container and registry config.
+- `docs-writer` owns `docs/`, `README.md`, `CONTRIBUTING.md`, `SECURITY.md`; runs after any user-visible change and before each release.
+
 ## Rules
 
-- Ponytail: `implementer` preloads `ponytail:ponytail`; `spec-reviewer` preloads `ponytail:ponytail-review`. The plugin is enabled for the project in `.claude/settings.json`; its SubagentStart hook also reaches every other agent, so `test-author` and `security-reviewer` carry explicit overrides. Spec, fail-closed and security rules beat ponytail minimalism.
+- Ponytail: `implementer` and `release-engineer` preload `ponytail:ponytail`; `spec-reviewer` preloads `ponytail:ponytail-review`. The plugin is enabled for the project in `.claude/settings.json`; its SubagentStart hook also reaches every other agent, so `test-author` and `security-reviewer` carry explicit overrides. Spec, fail-closed and security rules beat ponytail minimalism.
 
 - Fail closed: a wrong cached answer is worse than a miss.
 - Requirement IDs (G-, FR-, CR-, NFR-) come from the PRD; cite them in specs and tests.
