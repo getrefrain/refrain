@@ -11,7 +11,8 @@ HOOK = pathlib.Path(__file__).with_name("scope.py")
 ROOT = HOOK.parents[2]
 IMP = ["src,pyproject.toml,uv.lock,~specs/*/tasks.md"]
 TA = ["tests,~specs/*/tasks.md", "specs,tests,pyproject.toml"]
-SW = ["specs,.specify/feature.json,!specs/000-prd.md,!specs/README.md"]
+SW = ["specs,.specify/feature.json,!specs/README.md"]
+DW = ["docs,README.md,CONTRIBUTING.md,SECURITY.md", ".,!.specify/memory/prd.md"]
 RO = [""]
 
 
@@ -80,3 +81,7 @@ def test_file_tools():
     assert run(IMP, "Write", file_path=tasks, content="- [X] T1") == 2
     assert run(TA, "Read", file_path="src/refrain/__init__.py") == 2
     assert run(SW, "Write", file_path=".specify/memory/constitution.md", content="") == 2
+    assert run(SW, "Write", file_path=".specify/memory/prd.md", content="") == 2
+    assert run(DW, "Read", file_path=".specify/memory/prd.md") == 2
+    assert run(DW, "Grep", pattern="x", path=".specify") == 2
+    assert run(DW, "Read", file_path="specs/README.md") == 0

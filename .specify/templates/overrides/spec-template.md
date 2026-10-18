@@ -7,7 +7,7 @@ Status: DRAFT · Spec version: `[short id, e.g. k1]` · Implements: [PRD IDs: FR
 <!--
   Refrain spec template (overrides Spec Kit's default). Rules:
   - This file says WHAT and WHY. Language, libraries, module layout and bindings go in plan.md.
-  - Requirement IDs come from the PRD (specs/000-prd.md, private). Never copy business strategy here; specs are public.
+  - Requirement IDs come from the PRD (.specify/memory/prd.md, private). Never copy business strategy here; specs are public.
   - Fail closed (Constitution Article II): when a rule is uncertain, pick the behavior that causes a miss or an error.
   - Mark unresolved points with [NEEDS CLARIFICATION: question] and list them under Open questions.
 -->

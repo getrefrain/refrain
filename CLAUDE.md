@@ -7,7 +7,8 @@ Snapshot-keyed data gateway for AI agents: the data plane between agents and the
 ## Layout
 
 - `.specify/memory/constitution.md` — the constitution: rules that override everything else. Only the project owner edits it.
-- `specs/` — one directory per spec (`specs/NNN-name/`: `spec.md`, `plan.md`, `tasks.md`, `vectors.json`, plus whatever `speckit-plan` adds). `specs/000-prd.md` is the private PRD (gitignored); `specs/README.md` is the index. Every other spec is public.
+- `.specify/memory/prd.md` — the private PRD (gitignored): requirement IDs and business context. Spec Kit doesn't read it; the agents do.
+- `specs/` — one directory per spec (`specs/NNN-name/`: `spec.md`, `plan.md`, `tasks.md`, `vectors.json`, plus whatever `speckit-plan` adds). `specs/README.md` is the index. Every spec is public.
 - `.specify/` — GitHub Spec Kit (constitution, scripts, templates, workflow). Refrain's templates live in `.specify/templates/overrides/`.
 - `tests/` — tests derived from specs.
 - `src/` — implementation (Python 3.12+, uv).
@@ -34,7 +35,7 @@ Alongside, not in sequence:
 
 | Agent | Writes | Ponytail |
 |-------|--------|----------|
-| product-owner | `specs/000-prd.md`, `specs/README.md` | — |
+| product-owner | `.specify/memory/prd.md`, `specs/README.md` | — |
 | spec-writer | `specs/` except PRD and index; `.specify/feature.json` | — |
 | test-author | `tests/`; ticks checkboxes in `specs/*/tasks.md` (reads only `specs/`, `tests/`) | overridden: every vector is required |
 | implementer | `src/`, `pyproject.toml`, `uv.lock`; ticks checkboxes in `specs/*/tasks.md` | preloads `ponytail:ponytail` |

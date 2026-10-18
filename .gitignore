@@ -1,5 +1,5 @@
 # Private PRD (business strategy); technical specs are committed
-specs/000-prd.md
+.specify/memory/prd.md
 
 # Python, uv
 __pycache__/
@@ -28,7 +28,8 @@ CLAUDE.local.md
 .claude/worktrees/
 .claude/agent-memory-local/
 
-# Spec Kit: machine-local state is ignored by .specify/.gitignore
+# Spec Kit: machine-local state is ignored by .specify/.gitignore; catalog caches here
+.specify/*/.cache/
 
 # OS and editors
 .DS_Store

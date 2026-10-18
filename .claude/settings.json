@@ -11,7 +11,7 @@
     "enabled": true,
     "autoAllowBashIfSandboxed": false,
     "filesystem": {
-      "denyWrite": ["./.specify/memory/constitution.md", "./specs/000-prd.md"],
+      "denyWrite": ["./.specify/memory/constitution.md", "./.specify/memory/prd.md"],
       "allowWrite": ["~/.cache/uv", "~/.local/share/uv"]
     },
     "network": {
