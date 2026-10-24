@@ -1,0 +1,32 @@
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e # v6.8.0
+      - run: uv sync --locked --python 3.12
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
+      - name: Spec vectors are valid JSON
+        run: shopt -s nullglob; for f in specs/*/*.json; do python -m json.tool "$f" > /dev/null || exit 1; done
+      - name: Every tasks.md has test tasks (Constitution Article I)
+        run: |
+          shopt -s nullglob; fail=0
+          for f in specs/*/tasks.md; do
+            grep -Eq '^- \[[ xX]\] .*tests/' "$f" || { echo "::error file=$f::no test tasks (tasks touching tests/)"; fail=1; }
+          done
+          exit $fail
+      - name: Agent scope hook
+        run: uv run pytest .claude/hooks -q
+      - name: Tests
+        # Exit 5 = no tests collected yet; remove once spec 001 tests land.
+        run: uv run pytest || [ $? -eq 5 ]

@@ -1,0 +1,41 @@
+name: Bug report
+description: Refrain did something wrong.
+labels: [bug]
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: Include the response status and any error. Do not paste result data, SQL or credentials you cannot share publicly.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Refrain version or commit
+      placeholder: e.g. 0.1.0 or abc1234
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, Python version, install method (pip, uv, container), warehouse, storage backend, MCP client.
+    validations:
+      required: true

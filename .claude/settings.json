@@ -1,0 +1,27 @@
+{
+  "extraKnownMarketplaces": {
+    "ponytail": {
+      "source": { "source": "github", "repo": "DietrichGebert/ponytail" }
+    }
+  },
+  "enabledPlugins": {
+    "ponytail@ponytail": true
+  },
+  "sandbox": {
+    "enabled": true,
+    "autoAllowBashIfSandboxed": false,
+    "filesystem": {
+      "denyWrite": ["./.specify/memory/constitution.md", "./.specify/memory/prd.md"],
+      "allowWrite": ["~/.cache/uv", "~/.local/share/uv"]
+    },
+    "network": {
+      "allowedDomains": [
+        "pypi.org",
+        "files.pythonhosted.org",
+        "github.com",
+        "api.github.com",
+        "*.githubusercontent.com"
+      ]
+    }
+  }
+}
