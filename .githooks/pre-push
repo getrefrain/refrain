@@ -1,0 +1,21 @@
+#!/bin/sh
+# Refuse to push a ref whose tree holds a spec that is not IMPLEMENTED.
+# Drafts stay on local spec/NNN-name branches until they are IMPLEMENTED.
+# A private remote may take drafts: git config remote.<name>.allowDrafts true
+# Enable once per clone: git config core.hooksPath .githooks
+
+[ "$(git config --bool "remote.$1.allowDrafts")" = true ] && exit 0
+
+zero=0000000000000000000000000000000000000000
+status=0
+while read -r local_ref local_sha remote_ref remote_sha; do
+  [ "$local_sha" = "$zero" ] && continue  # branch deletion
+  for f in $(git ls-tree -r --name-only "$local_sha" -- specs | grep '^specs/[^/]*/spec\.md$'); do
+    # Fail closed: a spec with no recognized status line is treated as a draft.
+    if ! git show "$local_sha:$f" | grep -qE '^Status: IMPLEMENTED\b'; then
+      echo "pre-push: $local_ref contains unapproved spec $f; keep it on its spec/ branch" >&2
+      status=1
+    fi
+  done
+done
+exit $status

@@ -8,7 +8,7 @@ Snapshot-keyed data gateway for AI agents: the data plane between agents and the
 
 - `.specify/memory/constitution.md` — the constitution: rules that override everything else. Only the project owner edits it.
 - `.specify/memory/prd.md` — the private PRD (gitignored): requirement IDs and business context. Spec Kit doesn't read it; the agents do.
-- `specs/` — one directory per spec (`specs/NNN-name/`: `spec.md`, `plan.md`, `tasks.md`, `vectors.json`, plus whatever `speckit-plan` adds). `specs/README.md` is the index. Every spec is public.
+- `specs/` — one directory per spec (`specs/NNN-name/`: `spec.md`, `plan.md`, `tasks.md`, `vectors.json`, plus whatever `speckit-plan` adds). `specs/README.md` is the index. A spec, its tests and its code live on a local `spec/NNN-name` branch until the spec is IMPLEMENTED; only then is the branch squash-merged and pushed, so every earlier phase and revision stays in local history. `.githooks/pre-push` refuses to push any ref holding a spec whose status is not IMPLEMENTED (enable per clone with `git config core.hooksPath .githooks`).
 - `.specify/` — GitHub Spec Kit (constitution, scripts, templates, workflow). Refrain's templates live in `.specify/templates/overrides/`.
 - `tests/` — tests derived from specs.
 - `src/` — implementation (Python 3.12+, uv).
