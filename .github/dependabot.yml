@@ -4,6 +4,9 @@ updates:
     directory: /
     schedule:
       interval: weekly
+    # sqlglot's exact version is part of spec 001's cache key, so it is bumped only through a spec revision.
+    ignore:
+      - dependency-name: sqlglot
     groups:
       uv-minor-patch:
         update-types: [minor, patch]
