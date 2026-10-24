@@ -17,7 +17,7 @@ jobs:
       - run: uv run ruff check .
       - run: uv run ruff format --check .
       - name: Spec vectors are valid JSON
-        run: for f in specs/*/*.json; do python -m json.tool "$f" > /dev/null || exit 1; done
+        run: shopt -s nullglob; for f in specs/*/*.json; do python -m json.tool "$f" > /dev/null || exit 1; done
       - name: Every tasks.md has test tasks (Constitution Article I)
         run: |
           shopt -s nullglob; fail=0
